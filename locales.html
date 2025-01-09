@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuentros Locales para un Evento Social</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .meeting-card {
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+
+    .meeting-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .meeting-card-body {
+      padding: 20px;
+    }
+
+    .meeting-card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .meeting-card-description {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .meeting-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .confirm-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .confirm-btn:hover {
+      background-color: #218838;
+    }
+
+    .details-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .details-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .title-section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center mb-5 title-section">Encuentros Locales para el Evento Social</h1>
+
+    <!-- Sección de Encuentros -->
+    <div class="row">
+      <!-- Encuentro en Ciudad A -->
+      <div class="col-md-4">
+        <div class="card meeting-card">
+          <div class="card-body">
+            <h5 class="meeting-card-title">Encuentro en Ciudad A</h5>
+            <p class="meeting-card-description">Un evento local para los participantes del evento social en Ciudad A. Reunión para discutir los detalles y disfrutar de un ambiente relajado.</p>
+            <p><strong>Fecha:</strong> 15 de Febrero 2025</p>
+            <p><strong>Lugar:</strong> Parque Central, Ciudad A</p>
+          </div>
+          <div class="card-footer meeting-card-footer">
+            <button class="confirm-btn">Confirmar Asistencia</button>
+            <button class="details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="setMeetingDetails('Encuentro en Ciudad A')">Más Información</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Encuentro en Ciudad B -->
+      <div class="col-md-4">
+        <div class="card meeting-card">
+          <div class="card-body">
+            <h5 class="meeting-card-title">Encuentro en Ciudad B</h5>
+            <p class="meeting-card-description">Encuentro para los asistentes en Ciudad B, donde podremos compartir nuestras ideas sobre el evento y disfrutar de una pequeña charla.</p>
+            <p><strong>Fecha:</strong> 18 de Febrero 2025</p>
+            <p><strong>Lugar:</strong> Centro Cultural, Ciudad B</p>
+          </div>
+          <div class="card-footer meeting-card-footer">
+            <button class="confirm-btn">Confirmar Asistencia</button>
+            <button class="details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="setMeetingDetails('Encuentro en Ciudad B')">Más Información</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Encuentro en Ciudad C -->
+      <div class="col-md-4">
+        <div class="card meeting-card">
+          <div class="card-body">
+            <h5 class="meeting-card-title">Encuentro en Ciudad C</h5>
+            <p class="meeting-card-description">Una reunión para los participantes en Ciudad C, para conocernos mejor y hablar sobre lo que esperamos del evento social.</p>
+            <p><strong>Fecha:</strong> 20 de Febrero 2025</p>
+            <p><strong>Lugar:</strong> Auditorio Local, Ciudad C</p>
+          </div>
+          <div class="card-footer meeting-card-footer">
+            <button class="confirm-btn">Confirmar Asistencia</button>
+            <button class="details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="setMeetingDetails('Encuentro en Ciudad C')">Más Información</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para más detalles -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel">Detalles del Encuentro</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="meetingDetailsText">Aquí aparecerán los detalles completos del encuentro seleccionado.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let selectedMeeting = '';
+
+    function setMeetingDetails(meetingName) {
+      selectedMeeting = meetingName;
+      let meetingDetailsText = '';
+
+      // Aquí puedes agregar más detalles según la propuesta
+      switch(meetingName) {
+        case 'Encuentro en Ciudad A':
+          meetingDetailsText = 'Este encuentro es una excelente oportunidad para interactuar con los demás participantes y compartir tus expectativas para el evento.';
+          break;
+        case 'Encuentro en Ciudad B':
+          meetingDetailsText = 'Ven a disfrutar de un encuentro único en la ciudad B, con actividades interactivas y una charla amena sobre lo que está por venir en el evento.';
+          break;
+        case 'Encuentro en Ciudad C':
+          meetingDetailsText = 'Este es el encuentro final antes del evento, donde nos encontraremos para hacer una pequeña prueba del evento y resolver dudas de último minuto.';
+          break;
+        default:
+          meetingDetailsText = 'Selecciona un encuentro para ver los detalles.';
+      }
+
+      document.getElementById('meetingDetailsText').innerText = meetingDetailsText;
+    }
+  </script>
+</body>
+</html>
