@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comparación de Categorías de Eventos Sociales - Resumen</title>
-  <!-- Bootstrap CSS -->
+  <title>Resumen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .chart-container {
@@ -20,13 +19,42 @@
     .category-table th, .category-table td {
       text-align: center;
     }
+    .imagen-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .imagen {
+            width: 80%;
+            max-width: 500px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 1.5s ease-in-out forwards;
+        }
+
+        .imagen:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .imagen:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
   </style>
 </head>
 <body>
   <div class="container my-5">
-    <h1 class="text-center mb-4">Comparación por Categorías de Eventos Sociales</h1>
+    <h1 class="text-center mb-4" style="color: blueviolet; font-weight: bold; font-size: 80px; text-align: center;">Resumen Descargable</h1>
 
-    <!-- Tabla Comparativa -->
     <div class="mb-5">
       <h2 class="table-title text-center">Comparación Detallada</h2>
       <table class="table table-bordered category-table">
@@ -67,13 +95,18 @@
       </table>
     </div>
 
-    <!-- Gráfico de Barras -->
-    <div>
-      <h2 class="text-center mb-4">Comparación Visual</h2>
-      <div class="chart-container">
-        <canvas id="categoriesBarChart"></canvas>
+    <body>
+      
+      <div class="imagen-container">
+          <img src="imagenes/torta.jpg" alt="" class="imagen">
+          <img src="imagenes/barras.jpg" alt="" class="imagen ms-3">
       </div>
-    </div>
+  
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+
+    
 
     <!-- Botón de descarga -->
     <div class="text-center mt-5">
@@ -83,83 +116,13 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- jsPDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Datos para el gráfico de barras
-      const categoriesData = {
-        labels: ["Bodas", "Cumpleaños", "Corporativos", "Graduaciones"],
-        datasets: [
-          {
-            label: "Duración Promedio (Horas)",
-            data: [6, 4, 5, 5],
-            backgroundColor: "#36A2EB",
-            borderColor: "#2592DB",
-            borderWidth: 1
-          },
-          {
-            label: "Asistentes Promedio",
-            data: [150, 50, 100, 120],
-            backgroundColor: "#FF6384",
-            borderColor: "#FF4364",
-            borderWidth: 1
-          },
-          {
-            label: "Popularidad (%)",
-            data: [35, 25, 20, 20],
-            backgroundColor: "#FFCE56",
-            borderColor: "#FFB236",
-            borderWidth: 1
-          }
-        ]
-      };
+  
+  
 
-      // Configuración del gráfico de barras
-      const categoriesBarConfig = {
-        type: 'bar',
-        data: categoriesData,
-        options: {
-          responsive: true,
-          scales: {
-            x: { stacked: true },
-            y: { beginAtZero: true }
-          },
-          plugins: {
-            legend: { position: 'top' }
-          }
-        }
-      };
+     
 
-      // Crear el gráfico de barras
-      new Chart(
-        document.getElementById('categoriesBarChart'),
-        categoriesBarConfig
-      );
-
-      // Funcionalidad de descarga en PDF
-      document.getElementById('downloadBtn').addEventListener('click', function() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        // Agregar título y contenido
-        doc.text("Comparación por Categorías de Eventos Sociales", 10, 10);
-        doc.autoTable({
-          head: [['Categoría', 'Duración Promedio (Horas)', 'Asistentes Promedio', 'Popularidad (%)']],
-          body: [
-            ['Bodas', '6', '150', '35%'],
-            ['Cumpleaños', '4', '50', '25%'],
-            ['Corporativos', '5', '100', '20%'],
-            ['Graduaciones', '5', '120', '20%']
-          ],
-        });
-
-        // Descargar el PDF
-        doc.save("Resumen_Eventos_Sociales.pdf");
-      });
-    });
-  </script>
+    
+   
+ 
 </body>
 </html>
